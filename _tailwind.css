@@ -1,0 +1,210 @@
+/*
+ * This file is used to define the tailwindcss theme and typography styles.
+ * It is @imported into the assets/css/styles.css file, and its output is included in the build.
+ */
+
+@import "tailwindcss";
+@import "./assets/syntax-highlighting.css";
+
+@theme {
+  --font-sans: "Inter", -apple-system, system-ui, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Helvetica, Arial, Sans-Serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+}
+
+@layer base {
+  html {
+    @apply text-[16px] lg:text-[18px] 2xl:text-[20px];
+  }
+
+  body {
+    @apply antialiased;
+    @apply font-sans;
+  }
+}
+
+@layer utilities {
+  .prose {
+    /* First child spacing - removes top margin from first direct child */
+    > *:first-child {
+      @apply !mt-0;
+    }
+
+    /* Editor placeholder */
+    p.is-editor-empty:first-child::before {
+      @apply text-neutral-400 pointer-events-none float-left h-0 content-[attr(data-placeholder)];
+    }
+
+    /* Inline code */
+    code:not(pre code) {
+      @apply bg-neutral-100 text-neutral-900 px-1.5 py-0.5 rounded;
+      @apply font-mono text-sm border border-neutral-200;
+    }
+
+    /* Headings */
+    h1 {
+      @apply text-3xl font-bold mt-6 mb-5 leading-tight;
+    }
+
+    h2 {
+      @apply text-2xl font-bold mt-5 mb-4 leading-tight;
+    }
+
+    h3 {
+      @apply text-xl font-semibold mt-4 mb-3 leading-snug;
+    }
+
+    h4 {
+      @apply text-lg font-semibold mt-3 mb-3 leading-snug;
+    }
+
+    h5 {
+      @apply text-base font-semibold mt-3 mb-3 leading-normal;
+    }
+
+    h6 {
+      @apply text-sm font-semibold mt-2 mb-2 leading-normal text-neutral-700;
+    }
+
+    /* Paragraphs */
+    p {
+      @apply mb-5 leading-7;
+      white-space: pre-line;
+    }
+
+    /* Empty paragraphs - no margin or height */
+    p:empty {
+      @apply mb-5 h-7;
+    }
+
+    p:last-child {
+      @apply mb-0;
+    }
+
+    /* Lists */
+    ul,
+    ol {
+      @apply mb-5 pl-6;
+    }
+
+    ul {
+      @apply list-disc;
+    }
+
+    ol {
+      @apply list-decimal;
+    }
+
+    li {
+      @apply mb-3 leading-7;
+    }
+
+    li:last-child {
+      @apply mb-0;
+    }
+
+    /* Nested lists */
+    ul ul,
+    ol ol,
+    ul ol,
+    ol ul {
+      @apply mt-3 mb-0 ml-4;
+    }
+
+    /* Links */
+    a {
+      @apply text-blue-700 underline hover:text-blue-800;
+    }
+
+    /* Underline */
+    u {
+      @apply underline;
+    }
+
+    /* Blockquotes */
+    blockquote {
+      @apply border-l-4 font-medium border-neutral-300 pl-4 italic my-5 text-neutral-700;
+    }
+
+    /* Horizontal rule wrapper */
+    .rich-text-content-horizontal-rule-wrapper {
+      @apply relative py-3 cursor-pointer;
+    }
+
+    /* Horizontal rules */
+    hr {
+      @apply border-0 border-t border-neutral-200 mt-7 mb-5 cursor-pointer;
+    }
+
+    /* Strong and emphasis */
+    strong {
+      @apply font-bold;
+    }
+
+    em {
+      @apply italic;
+    }
+
+    /* Strikethrough */
+    s,
+    del {
+      @apply line-through;
+    }
+
+    /* Hard breaks - line breaks are handled naturally by the editor */
+
+    /* Highlight/mark */
+    mark {
+      @apply bg-yellow-200 px-0.5 rounded;
+    }
+
+    /* Images */
+    img {
+      @apply max-w-full h-auto cursor-pointer;
+      @apply mx-auto transition-shadow duration-200;
+      @apply my-5;
+    }
+
+    img:last-child {
+      @apply mb-0;
+    }
+
+    /* Adjacent element spacing */
+    h1 + p,
+    h2 + p,
+    h3 + p,
+    h4 + p,
+    h5 + p,
+    h6 + p {
+      @apply mt-0;
+    }
+
+    p + h1,
+    p + h2,
+    p + h3,
+    p + h4,
+    p + h5,
+    p + h6 {
+      @apply mt-6;
+    }
+
+    ul + p,
+    ol + p,
+    p + ul,
+    p + ol {
+      @apply mt-0;
+    }
+
+    blockquote + p,
+    p + blockquote {
+      @apply mt-0;
+    }
+
+    pre + p,
+    p + pre {
+      @apply mt-0;
+    }
+
+    hr + * {
+      @apply mt-0;
+    }
+  }
+}
