@@ -1,0 +1,53 @@
+post_type_field: "type_of_writing"
+
+post_types:
+  - id: "exploration"
+    label: "Exploration"
+    description: "A focused deep dive into one idea, technology, question, or system."
+    default_pov: "first-person analytical"
+    typical_shape: "context -> exploration -> takeaways"
+
+  - id: "narrative"
+    label: "Narrative"
+    description: "Story-driven writing with a distinct point of view and a clear arc."
+    default_pov: "first-person or close third-person"
+    typical_shape: "scene -> tension -> reflection"
+
+  - id: "persuasive"
+    label: "Persuasive"
+    description: "An argument for a position, decision, or practice."
+    default_pov: "opinionated but evidence-based"
+    typical_shape: "claim -> support -> counterpoints -> recommendation"
+
+  - id: "notes_til"
+    label: "Notes / TIL"
+    description: "Short learnings, scratchpad notes, or things worth remembering."
+    default_pov: "direct and concise"
+    typical_shape: "what -> why it matters -> references"
+
+  - id: "quick_tip"
+    label: "Quick Tip"
+    description: "A fast practical tip or fix that solves one specific problem."
+    default_pov: "instructional"
+    typical_shape: "problem -> one fix -> optional caveat"
+
+  - id: "walkthrough"
+    label: "Walkthrough"
+    description: "Step-by-step implementation details for building or configuring something."
+    default_pov: "instructional"
+    typical_shape: "goal -> prerequisites -> steps -> validation"
+
+  - id: "postmortem"
+    label: "Postmortem"
+    description: "What went wrong (or right), what was learned, and what changes next."
+    default_pov: "reflective and concrete"
+    typical_shape: "incident -> analysis -> lessons -> follow-up actions"
+
+  - id: "field_guide"
+    label: "Field Guide"
+    description: "A practical reference that summarizes patterns, heuristics, or decision rules."
+    default_pov: "pragmatic"
+    typical_shape: "principles -> examples -> checklist"
+
+front_matter_example:
+  type_of_writing: "exploration"
