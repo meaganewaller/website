@@ -1,210 +1,316 @@
-/*
- * This file is used to define the tailwindcss theme and typography styles.
- * It is @imported into the assets/css/styles.css file, and its output is included in the build.
- */
-
 @import "tailwindcss";
-@import "./assets/syntax-highlighting.css";
+
+@font-face {
+    font-family: 'Inter var';
+    font-weight: 100 900;
+    font-display: swap;
+    font-style: normal;
+    font-named-instance: 'Regular';
+    src: url('/assets/fonts/inter/InterVariable.woff2') format('woff2');
+}
+
+@font-face {
+    font-family: 'Literata';
+    font-style: normal;
+    font-weight: 100 900;
+    font-display: swap;
+	font-style: normal;
+    font-named-instance: 'Regular';
+    src: url('/assets/fonts/literata/Literata.woff2') format('woff2');
+}
+
+@plugin "@tailwindcss/typography";
+@plugin "@tailwindcss/forms";
+@plugin "@tailwindcss/aspect-ratio";
+
+@custom-variant dark (&:where(.dark, .dark *));
 
 @theme {
-  --font-sans: "Inter", -apple-system, system-ui, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Helvetica, Arial, Sans-Serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+	--font-sans: "Inter var", sans-serif;
+	--font-serif: "Literata", serif;
+
+    --color-gray-*: initial;
+
+	--color-black: oklch(0.1821 0.0139 94.03);
+	--color-paper: oklch(97.53% 0.004 106.47);
+
+	--color-gray-50: oklch(95.37% 0.004 106.47);
+	--color-gray-100: oklch(91.74% 0.004 106.47);
+	--color-gray-150: oklch(88.10% 0.004 106.47);
+	--color-gray-200: oklch(84.63% 0.005 106.47);
+	--color-gray-300: oklch(77.21% 0.006 106.47);
+	--color-gray-400: oklch(69.56% 0.006 106.47);
+	--color-gray-500: oklch(61.69% 0.007 106.47);
+	--color-gray-600: oklch(53.75% 0.007 106.47);
+	--color-gray-700: oklch(45.31% 0.006 106.47);
+	--color-gray-800: oklch(36.51% 0.005 106.47);
+	--color-gray-850: oklch(32.14% 0.004 106.47);
+	--color-gray-900: oklch(27.34% 0.003 106.47);
+	--color-gray-950: oklch(22.28% 0.002 106.47);
+
+	--color-red-400: oklch(59.70% 0.169 28.38);
+	--color-red-600: oklch(50.42% 0.165 27.84);
+	--color-orange-400: oklch(65.76% 0.154 49.30);
+	--color-orange-600: oklch(56.65% 0.152 45.02);
+	--color-yellow-400: oklch(73.46% 0.146 87.46);
+	--color-yellow-600: oklch(63.33% 0.129 85.81);
+	--color-green-400: oklch(65.13% 0.124 119.38);
+	--color-green-600: oklch(55.93% 0.134 122.92);
+	--color-cyan-400: oklch(55.44% 0.086 186.74);
+	--color-cyan-600: oklch(67.01% 0.100 186.58);
+	--color-blue-400: oklch(59.88% 0.110 247.00);
+	--color-blue-600: oklch(48.18% 0.131 254.79);
+	--color-purple-400: oklch(63.48% 0.110 291.00);
+	--color-purple-600: oklch(45.40% 0.145 294.83);
+	--color-magenta-400: oklch(63.48% 0.156 350.47);
+	--color-magenta-600: oklch(49.54% 0.161 349.76);
 }
 
-@layer base {
-  html {
-    @apply text-[16px] lg:text-[18px] 2xl:text-[20px];
-  }
-
-  body {
-    @apply antialiased;
-    @apply font-sans;
-  }
+:root {
+    --color-primary: var(--color-emerald-800);
+	--color-red: var(--color-red-600);
+	--color-orange: var(--color-orange-600);
+	--color-yellow: var(--color-yellow-600);
+	--color-green: var(--color-green-600);
+	--color-cyan: var(--color-cyan-600);
+	--color-blue: var(--color-blue-600);
+	--color-purple: var(--color-purple-600);
+	--color-magenta: var(--color-magenta-600);
 }
 
-@layer utilities {
-  .prose {
-    /* First child spacing - removes top margin from first direct child */
-    > *:first-child {
-      @apply !mt-0;
-    }
+:root[class~='dark'] {
+	--color-primary: var(--color-emerald-200);
+	--color-red: var(--color-red-400);
+	--color-orange: var(--color-orange-400);
+	--color-yellow: var(--color-yellow-400);
+	--color-green: var(--color-green-400);
+	--color-cyan: var(--color-cyan-400);
+	--color-blue: var(--color-blue-400);
+	--color-purple: var(--color-purple-400);
+	--color-magenta: var(--color-magenta-400);
+}
 
-    /* Editor placeholder */
-    p.is-editor-empty:first-child::before {
-      @apply text-neutral-400 pointer-events-none float-left h-0 content-[attr(data-placeholder)];
-    }
+@theme inline {
+	--color-primary: var(--color-primary);
+	--color-red: var(--color-red);
+	--color-orange: var(--color-orange);
+	--color-yellow: var(--color-yellow);
+	--color-green: var(--color-green);
+	--color-cyan: var(--color-cyan);
+	--color-blue: var(--color-blue);
+	--color-purple: var(--color-purple);
+	--color-magenta: var(--color-magenta);
+}
 
-    /* Inline code */
-    code:not(pre code) {
-      @apply bg-neutral-100 text-neutral-900 px-1.5 py-0.5 rounded;
-      @apply font-mono text-sm border border-neutral-200;
-    }
+@utility prose {
+    --tw-prose-body: var(--color-gray-800);
+    --tw-prose-headings: var(--color-gray-900);
+    --tw-prose-lead: var(--color-gray-700);
+    --tw-prose-links: var(--color-black);
+    --tw-prose-bold: var(--color-gray-900);
+    --tw-prose-counters: var(--color-gray-600);
+    --tw-prose-bullets: var(--color-gray-400);
+    --tw-prose-hr: var(--color-gray-300);
+    --tw-prose-quotes: var(--color-gray-900);
+    --tw-prose-quote-borders: var(--color-gray-300);
+    --tw-prose-captions: var(--color-gray-700);
+    --tw-prose-code: var(--color-gray-900);
+    --tw-prose-pre-code: var(--color-gray-100);
+    --tw-prose-pre-bg: var(--color-gray-900);
+    --tw-prose-th-borders: var(--color-gray-300);
+    --tw-prose-td-borders: var(--color-gray-200);
+    --tw-prose-invert-body: var(--color-gray-200);
+    --tw-prose-invert-headings: var(--color-paper);
+    --tw-prose-invert-lead: var(--color-gray-300);
+    --tw-prose-invert-links: var(--color-paper);
+    --tw-prose-invert-bold: var(--color-paper);
+    --tw-prose-invert-counters: var(--color-gray-400);
+    --tw-prose-invert-bullets: var(--color-gray-600);
+    --tw-prose-invert-hr: var(--color-gray-700);
+    --tw-prose-invert-quotes: var(--color-gray-100);
+    --tw-prose-invert-quote-borders: var(--color-gray-700);
+    --tw-prose-invert-captions: var(--color-gray-400);
+    --tw-prose-invert-code: var(--color-paper);
+    --tw-prose-invert-pre-code: var(--color-gray-300);
+    --tw-prose-invert-pre-bg: rgb(0 0 0 / 50%);
+    --tw-prose-invert-th-borders: var(--color-gray-600);
+    --tw-prose-invert-td-borders: var(--color-gray-700);
 
-    /* Headings */
-    h1 {
-      @apply text-3xl font-bold mt-6 mb-5 leading-tight;
-    }
+    @apply prose-lg font-serif leading-7 [&>p:first-of-type]:mt-0 prose-headings:font-serif prose-headings:font-normal prose-h1:text-4xl prose-h1:mb-6 prose-h2:text-3xl prose-h2:font-medium prose-h2:mt-8 prose-h2:mb-3 prose-h3:text-2xl prose-h3:italic prose-h3:tracking-wide prose-h4:text-lg prose-h4:font-semibold prose-h4:mb-5 prose-h5:text-base prose-h5:font-sans prose-h5:font-semibold prose-h5:uppercase prose-h5:mb-4 prose-h6:text-base prose-h6:font-sans prose-h6:uppercase prose-h6:mb-2 prose-blockquote:border-l-primary prose-blockquote:not-italic prose-blockquote:font-normal prose-blockquote:py-1 prose-blockquote:bg-gray-50 dark:prose-blockquote:bg-gray-900 prose-th:font-sans prose-th:font-semibold prose-thead:border-gray-100 dark:prose-thead:border-b-gray-800 prose-tr:border-gray-100 dark:prose-tr:border-gray-800 prose-a:font-normal prose-a:hover:text-primary;
+}
 
-    h2 {
-      @apply text-2xl font-bold mt-5 mb-4 leading-tight;
-    }
-
-    h3 {
-      @apply text-xl font-semibold mt-4 mb-3 leading-snug;
-    }
-
-    h4 {
-      @apply text-lg font-semibold mt-3 mb-3 leading-snug;
-    }
-
-    h5 {
-      @apply text-base font-semibold mt-3 mb-3 leading-normal;
-    }
-
-    h6 {
-      @apply text-sm font-semibold mt-2 mb-2 leading-normal text-neutral-700;
-    }
-
-    /* Paragraphs */
-    p {
-      @apply mb-5 leading-7;
-      white-space: pre-line;
-    }
-
-    /* Empty paragraphs - no margin or height */
-    p:empty {
-      @apply mb-5 h-7;
-    }
-
-    p:last-child {
-      @apply mb-0;
-    }
-
-    /* Lists */
-    ul,
-    ol {
-      @apply mb-5 pl-6;
-    }
-
-    ul {
-      @apply list-disc;
-    }
-
-    ol {
-      @apply list-decimal;
-    }
-
-    li {
-      @apply mb-3 leading-7;
-    }
-
-    li:last-child {
-      @apply mb-0;
-    }
-
-    /* Nested lists */
-    ul ul,
-    ol ol,
-    ul ol,
-    ol ul {
-      @apply mt-3 mb-0 ml-4;
-    }
-
-    /* Links */
-    a {
-      @apply text-blue-700 underline hover:text-blue-800;
-    }
-
-    /* Underline */
-    u {
-      @apply underline;
-    }
-
-    /* Blockquotes */
-    blockquote {
-      @apply border-l-4 font-medium border-neutral-300 pl-4 italic my-5 text-neutral-700;
-    }
-
-    /* Horizontal rule wrapper */
-    .rich-text-content-horizontal-rule-wrapper {
-      @apply relative py-3 cursor-pointer;
-    }
-
-    /* Horizontal rules */
-    hr {
-      @apply border-0 border-t border-neutral-200 mt-7 mb-5 cursor-pointer;
-    }
-
-    /* Strong and emphasis */
-    strong {
-      @apply font-bold;
-    }
-
-    em {
-      @apply italic;
-    }
-
-    /* Strikethrough */
-    s,
-    del {
-      @apply line-through;
-    }
-
-    /* Hard breaks - line breaks are handled naturally by the editor */
-
-    /* Highlight/mark */
-    mark {
-      @apply bg-yellow-200 px-0.5 rounded;
-    }
-
-    /* Images */
-    img {
-      @apply max-w-full h-auto cursor-pointer;
-      @apply mx-auto transition-shadow duration-200;
-      @apply my-5;
-    }
-
-    img:last-child {
-      @apply mb-0;
-    }
-
-    /* Adjacent element spacing */
-    h1 + p,
-    h2 + p,
-    h3 + p,
-    h4 + p,
-    h5 + p,
-    h6 + p {
-      @apply mt-0;
-    }
-
-    p + h1,
-    p + h2,
-    p + h3,
-    p + h4,
-    p + h5,
-    p + h6 {
-      @apply mt-6;
-    }
-
-    ul + p,
-    ol + p,
-    p + ul,
-    p + ol {
-      @apply mt-0;
-    }
-
-    blockquote + p,
-    p + blockquote {
-      @apply mt-0;
-    }
-
-    pre + p,
-    p + pre {
-      @apply mt-0;
-    }
-
-    hr + * {
-      @apply mt-0;
-    }
+.internal-link {
+	@apply underline bg-primary/10 decoration-primary;
   }
+
+pre {
+	@apply border border-gray-850 bg-black;
+}
+
+.prose blockquote p::before,
+.prose blockquote p::after {
+	display: none;
+}
+
+.prose.blog > :where(p):last-of-type::after {
+	content: " ■";
+	color: var(--color-primary);
+}
+
+.theme-icon-dark,
+.theme-icon-light {
+	display: none;
+}
+
+.dark .theme-icon-dark,
+.dark .theme-icon-light {
+	display: none;
+}
+
+.theme-dark .theme-icon-dark {
+	display: inline-block;
+}
+
+.theme-dark .theme-icon-system {
+display: none;
+}
+
+.light .theme-icon-system,
+.light .theme-icon-dark {
+	display: none;
+}
+
+.light .theme-icon-light {
+	display: inline-block;
+}
+
+.prose .highlight pre code,
+.highlight pre code {
+	color: unset !important;
+}
+
+/* Comments */
+.highlight .c {color:var(--color-gray-700)}
+.highlight .cm{color:var(--color-gray-700)}
+.highlight .cp{color:var(--color-gray-700)}
+.highlight .c1{color:var(--color-gray-700)}
+.highlight .cs{color:var(--color-gray-700)}
+.highlight .gh{color:var(--color-gray-700)}
+.highlight .w{color:var(--color-gray-700)}
+.highlight .bp{color:var(--color-gray-700)}
+
+/* Punctuation, operators */
+.highlight .p{color:var(--color-gray-500)}
+.highlight .go{color:var(--color-gray-500)}
+.highlight .gp{color:var(--color-gray-500)}
+.highlight .gu{color:var(--color-gray-500)}
+.highlight .nn{color:var(--color-gray-500)}
+
+/* Invalid, imports */
+.highlight .err{color:var(--color-red-400)}
+.highlight .gt{color:var(--color-red-400)}
+.highlight .ge{font-style:italic}
+.highlight .gr{color:var(--color-red-400)}
+.highlight .o{color:var(--color-red-400)}
+.highlight .se{color:var(--color-red-400)}
+.highlight .sr{color:var(--color-red-400)}
+.highlight .ss{color:var(--color-red-400)}
+
+/* Functions */
+.highlight .na{color:var(--color-orange-400)}
+
+/* Keywords */
+.highlight .k{color:var(--color-green-400)}
+.highlight .s{color:var(--color-green-400)}
+.highlight .nb{color:var(--color-green-400)}
+.highlight .sb{color:var(--color-green-400)}
+.highlight .sc{color:var(--color-green-400)}
+.highlight .sd{color:var(--color-green-400)}
+.highlight .sh{color:var(--color-green-400)}
+.highlight .si{color:var(--color-green-400)}
+.highlight .sx{color:var(--color-green-400)}
+
+/* Strings */
+.highlight .no{color:var(--color-cyan-400)}
+.highlight .nv{color:var(--color-cyan-400)}
+.highlight .s2{color:var(--color-cyan-400)}
+.highlight .s1{color:var(--color-cyan-400)}
+.highlight .vc{color:var(--color-cyan-400)}
+.highlight .vg{color:var(--color-cyan-400)}
+.highlight .vi{color:var(--color-cyan-400)}
+
+/* Variables, attributes */
+.highlight .kc{color:var(--color-blue-400)}
+.highlight .kd{color:var(--color-blue-400)}
+.highlight .kp{color:var(--color-blue-400)}
+.highlight .kr{color:var(--color-blue-400)}
+.highlight .kt{color:var(--color-blue-400)}
+.highlight .nc{color:var(--color-blue-400)}
+
+/* Numbers */
+.highlight .m{color:var(--color-purple-400)}
+.highlight .mf{color:var(--color-purple-400)}
+.highlight .mh{color:var(--color-purple-400)}
+.highlight .mi{color:var(--color-purple-400)}
+.highlight .mo{color:var(--color-purple-400)}
+.highlight .il{color:var(--color-purple-400)}
+
+/* Table of Contents Styles */
+.toc-item {
+  @apply mb-1;
+}
+
+.toc-link {
+  @apply block py-1 px-2 text-sm text-gray-600 dark:text-gray-400 hover:text-primary hover:bg-gray-50 dark:hover:bg-gray-800 rounded-md transition-colors duration-200 no-underline first:mt-3;
+}
+
+.toc-link.active {
+  @apply text-primary bg-gray-50 dark:bg-gray-800 font-medium;
+}
+
+.toc-level-2 .toc-link {
+  @apply font-medium;
+}
+
+.toc-level-3 .toc-link,
+.toc-level-4 .toc-link,
+.toc-level-5 .toc-link,
+.toc-level-6 .toc-link {
+  @apply text-xs text-gray-500 dark:text-gray-500;
+}
+
+/* TOC Collapsible Styles */
+#toc-toggle {
+  @apply cursor-pointer focus:outline-none;
+}
+
+#toc-toggle:hover svg {
+  @apply text-primary;
+}
+
+/* Email Protection Styles */
+.email-protected {
+  @apply inline-flex items-center gap-1 cursor-pointer transition-all duration-200 hover:border-solid hover:text-green-700 dark:hover:text-green-300;
+}
+
+.email-protected:hover {
+  @apply bg-gray-50 dark:bg-gray-800 text-primary px-1 rounded;
+}
+
+.email-revealed {
+  @apply text-primary hover:text-green-700 dark:hover:text-green-300 underline cursor-pointer;
+}
+
+.email-revealed::after {
+  content: "";
+}
+
+/* Copy notification */
+#email-copy-notification {
+  @apply fixed top-4 right-4 bg-green-600 text-white px-4 py-2 rounded shadow-lg z-50 opacity-0 transition-opacity duration-300;
+}
+
+/* Additional bot protection - hide content for automated scrapers */
+.email-honeypot {
+  @apply absolute left-[-9999px] top-[-9999px] w-0 h-0 overflow-hidden;
 }

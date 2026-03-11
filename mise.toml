@@ -1,0 +1,27 @@
+[env]
+JEKYLL_ENV = "development"
+
+[tools]
+ruby = "latest"
+
+[tasks.bundle]
+run = "bundle install"
+description = "Install Ruby dependencies"
+
+[tasks.serve]
+run = "bundle exec jekyll serve --drafts --livereload"
+description = "Serve the site locally with drafts and live reload"
+
+[tasks.clean]
+run = "bundle exec jekyll clean"
+description = "Clean the site by removing the _site directory"
+
+[tasks.start]
+depends = ["clean"]
+run = "mise serve"
+description = "Start the development server after installing dependencies and cleaning the site"
+
+[tasks.build]
+depends = ["bundle", "clean"]
+run = "bundle exec jekyll build"
+env = { "JEKYLL_ENV" = "production" }
