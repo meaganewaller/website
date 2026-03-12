@@ -3,10 +3,9 @@ layout: post
 title: "Inside My Dotfiles Repo: Profile-Aware, Idempotent, and Agent Ready"
 permalink: my-dotfiles-repo/
 date: 2026-03-10
-categories: [engineering, tooling, dotfiles]
 tags: [dotfiles, macos, mise, homebrew, automation, claude, codex]
 excerpt: "How my dotfiles repository turns machine setup into a repeatable system with profiles, symlink convergence, runtime management, and Dev OS automation."
-type_of_writing: "exploration"
+category: "explorations"
 ---
 
 A good dotfiles repo can be an operating model for your development environment.

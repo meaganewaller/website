@@ -1,20 +1,17 @@
 # Site settings
 
 title: meagan's site
+tagline: my digital garden
 email: meagan@meaganwaller.com
 description: >- # this means to ignore newlines until "baseurl:"
-  Write an awesome description for your new site here. You can edit this
-  line in _config.yml. It will appear in your document head meta (for
-  Google search results) and in your feed.xml site description.
-baseurl: "" # the subpath of your site, e.g. /blog
-url: "" # the base hostname & protocol for your site, e.g. http://example.com
-collections:
-  posts:
-    output: true
-    permalink: /:slug
-  pages:
-    output: true
-    permalink: /:slug
+  this is my personal website. i share thoughts, notes, projects, interesting links, and other things here. i try and keep it somewhat curated, but it's mostly a place for me to write and share things that i find interesting. i also use it as a place to experiment with web design and development.
+url: "https://meaganwaller.com" # the base hostname & protocol for your site
+timezone: "America/New_York"
+
+author:
+  name: meagan waller
+  url: "https://meaganwaller.com"
+  github: meaganewaller
 
 plugins:
   - jekyll-archives
@@ -26,5 +23,46 @@ plugins:
 
 markdown: kramdown
 highlighter: rouge
+permalink: "/:title/"
 include:
   - "_pages"
+
+defaults:
+  - scope:
+      path: ""
+      type: "posts"
+    values:
+      is_post: true
+
+tailwindcss:
+  css_path: "./assets/css/_tailwind.css"
+
+jekyll-archives:
+  enabled:
+    - categories
+    - tags
+  layout: archive
+  permalinks:
+    category: "/:name/"
+    tag: "/topics/:name/"
+
+jekyll_tidy:
+  exclude:
+    - "feed.xml"
+    - "feed-*.xml"
+    - "assets/js/bundle.js"
+    - "llms.txt"
+
+### EXCLUSIONS
+exclude:
+  - "Gemfile"
+  - "Gemfile.lock"
+  - "gulpfile.babel.js"
+  - "LICENSE.md"
+  - "node_modules"
+  - ".obsidian"
+  - "package.json"
+  - "package-lock.json"
+  - "README.md"
+  - "tailwind.config.js"
+  - "netlify.toml"
